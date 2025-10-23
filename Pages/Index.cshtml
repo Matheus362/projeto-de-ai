@@ -1,0 +1,87 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Sentiment Analysis";
+}
+
+
+
+<div class="text-center">
+   <strong> <h4 class="display-4">Encontre os  <p style="text-shadow: 0 0 10px darkslateblue;"><strong><span style="color: darkslateblue;">melhores preços </span></strong></p> para seus produtos </h4>
+    </strong>
+   <strong>
+        <p>
+            Compare preços de produtos de tecnologia em tempo real, <br />
+            e receba alertas de descontos para fazer a compra ideial
+        </p>
+    </strong>
+</div>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form method="post">
+            <div class="form-group mb-3">
+                <div class="container"
+                     style="background-color: rgba(128,128,128,0.2);
+                            padding: 20px;
+                            border-radius: 12px;
+                            box-shadow: 0 0 10px lightgray;">
+                    <textarea asp-for="InputText"
+                              class="form-control"
+                              style="background-color: rgba(211,211,211,0.8);
+                                     color: #000;
+                                     border-radius: 8px;"
+                              placeholder="🔍︎ Buscar produtos..."
+                              id="text-input"
+                              rows="4">
+                    </textarea>
+
+                    <button type="submit"
+                            class="btn btn-success" mt-5"
+                            style="width: 100%;">
+                        Comece a comparar →
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@if (Model.Resultados != null && Model.Resultados.Any())
+{
+    <div class="container mt-4">
+        <h4>Resultados encontrados:</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Loja</th>
+                    <th>Preço</th>
+                    <th>Desconto</th>
+                    <th>Preço Final</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var produto in Model.Resultados)
+                {
+                    <tr>
+                        <td>@produto.Nome</td>
+                        <td>@produto.Loja</td>
+                        <td>R$ @produto.Preco.ToString("F2")</td>
+                        <td>@produto.Desconto%</td>
+                        <td>R$ @produto.PrecoFinal.ToString("F2")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else if (!string.IsNullOrWhiteSpace(Model.InputText))
+{
+    <div class="alert alert-warning mt-4">
+        Nenhum produto encontrado para "<strong>@Model.InputText</strong>".
+    </div>
+}

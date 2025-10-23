@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PriceAI - Encontre o Melhor Preço</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/NovaPasta/PriceAI Logo Option 1 (1).jpg" type="image/jpeg" />
+
+     
+
+
+</head>
+<style>
+    <style >
+   
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: poppins;
+    }
+
+    /* Button used to open the chat form - fixed at the bottom right of the page */
+    .open-button {
+        background-color: transparent;
+        color: #5d17cf;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        opacity: 0.8;
+        position: fixed;
+        bottom: 23px;
+        right: 28px;
+        transition: 0.3s;
+    }
+
+    /* The popup chat which is hidden by default */
+    .chat-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        z-index: 9;
+    }
+
+    .form-container {
+        max-width: 300px;
+        padding: 10px;
+        background-color: white;
+        border-radius: 8px;
+    }
+
+    /* Chat messages area */
+    .chat-messages {
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+    }
+
+    .message {
+        margin-bottom: 10px;
+        padding: 8px;
+        background-color: #e9e9e9;
+        border-radius: 5px;
+        word-wrap: break-word;
+    }
+
+        .message.user {
+            background-color: #04aa6d;
+            color: white;
+            text-align: right;
+        }
+
+    /* Enables full-width textarea */
+    .form-container textarea {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+        border-radius: 8px;
+        resize: none;
+        min-height: 90px;
+    }
+
+        /* When the textarea gets focus, do something (changes color)*/
+        .form-container textarea:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+    /* Set a style for the submit/send button */
+    .form-container .btn {
+        background-color: #04aa6d;
+        color: white;
+        padding: 16px 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 10px;
+        opacity: 0.8;
+        transition: 0.3s;
+    }
+
+    /* Adds a red background color to the cancel button */
+    .form-container .cancel {
+        background-color: red;
+    }
+
+    /* Adds hover effects to all the buttons */
+    .form-container .btn:hover, .open-button:hover {
+        opacity: 1;
+    }
+
+    body {
+        background-image: url('/NovaPasta/PriceAI Clean Website Background2-Photoroom.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-size: cover; 
+        background-position: center; 
+    }
+
+    .navbar {
+        position: relative;
+    }
+
+    .navbar {
+        background-color: #808080B3; /* B3 = 70% de opacidade */
+    }
+
+
+       
+        .navbar form.d-flex {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%; 
+
+        }
+
+    .footer {
+        background-color: #808080B3;
+        color: #0A0F38;
+        padding: 1rem 0;
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    
+
+    
+</style>
+
+       
+
+            </div>
+        </div>
+    </header>
+
+<body>
+    <header>
+
+        <nav class="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="\NovaPasta\PriceAI Logo Option 1.png" alt="Logo" width="150" height="150" class="d-inline-block align-text-top">
+                </a>
+
+                <form class="d-flex" role="search">
+                    <input class="form-control" placeholder="Digite o nome do produto para comparar preços 🤖..." id="searchInput" />
+                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i> Buscar</button>
+                </form>
+            </div>
+        </nav>
+        <body>
+           <button class="open-button" onclick="openForm()">
+    <img src="/NovaPasta/Whatsapp1.png" alt="Abrir chat" width="60" height="60">
+</button>
+
+            
+        </body>
+       
+    </header>
+
+   
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text">
+        <div class="container">
+            &copy; 2025 - PriceAI - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <div class="chat-popup" id="myForm">
+        <form class="form-container" id="chatForm">
+            <h1 style="color:#5d17cf;">Chat</h1>
+            <label for="msg">
+                <img src="\NovaPasta\botty.png" alt="Icon" width="35" height="35" class="d-inline-block align-text-top"> Botty está online!</label>
+
+            <div class="chat-messages" id="chatMessages">
+                <p style="color: #666; font-style: italic;">Olá me chamo Botty, e serei o seu guia nesse website.</p>
+            </div>
+
+            <textarea placeholder="Digite sua mensagem..." id="msg" name="msg" required></textarea>
+            <button type="submit" class="btn">Enviar</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Cancelar/Fechar</button>
+        </form>
+    </div>
+     <script>
+
+        // Função para abrir o popup
+        function openForm(){
+            document.getElementById("myForm").style.display = "block";
+        document.getElementById("msg").focus(); 
+        }
+
+        // Função para fechar o popup
+        function closeForm(){
+            document.getElementById("myForm").style.display = "none";
+        document.getElementById("msg").value = ""; 
+        }
+
+        document.getElementById("chatForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+        const messageInput = document.getElementById("msg");
+        const messageText = messageInput.value.trim();
+
+        if (messageText === "") {
+                return; // Não envia mensagens vazias
+            }
+        // Adiciona a mensagem do usuário à área de chat
+        const chatMessages = document.getElementById("chatMessages");
+        const newMessage = document.createElement("div");
+        newMessage.className = "message user";
+        newMessage.textContent = messageText;
+        chatMessages.appendChild(newMessage);
+
+        // Limpa o textarea
+        messageInput.value = "";
+
+        // Rola para o final da área de mensagens
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                const botMessage = document.createElement("div");
+        botMessage.className = "message";
+        botMessage.textContent = "Mensagem recebida! (Resposta simulada do bot)";
+        chatMessages.appendChild(botMessage);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        });
+    </script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
