@@ -67,7 +67,6 @@ C:\Users\Trabalho\source\repos\ML-2025\obj\Debug\net6.0\ref\ML-2025.dll
 C:\Users\Trabalho\source\repos\ML-2025\bin\Debug\net6.0\MLModels\sentiment.csv
 C:\Users\Claud\OneDrive\Documentos\ML-2025\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Claud\OneDrive\Documentos\ML-2025\bin\Debug\net6.0\appsettings.json
-C:\Users\Claud\OneDrive\Documentos\ML-2025\bin\Debug\net6.0\MLModels\sentiment.csv
 C:\Users\Claud\OneDrive\Documentos\ML-2025\bin\Debug\net6.0\ML-2025.staticwebassets.runtime.json
 C:\Users\Claud\OneDrive\Documentos\ML-2025\bin\Debug\net6.0\ML-2025.staticwebassets.endpoints.json
 C:\Users\Claud\OneDrive\Documentos\ML-2025\bin\Debug\net6.0\ML-2025.exe

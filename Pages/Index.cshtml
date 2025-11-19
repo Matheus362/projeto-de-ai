@@ -84,4 +84,27 @@ else if (!string.IsNullOrWhiteSpace(Model.InputText))
     <div class="alert alert-warning mt-4">
         Nenhum produto encontrado para "<strong>@Model.InputText</strong>".
     </div>
+
+<div class="text-center mt-3">
+    <p>Essa mensagem foi útil?</p>
+
+    <button class="btn btn-success" onclick="enviarRating('@Model.InputText', true)">👍 Sim</button>
+    <button class="btn btn-danger" onclick="enviarRating('@Model.InputText', false)">👎 Não</button>
+</div>
+<script>
+    function enviarRating(texto, positivo) {
+        fetch('/Index?handler=Rating', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken':
+                    document.querySelector('input[name="__RequestVerificationToken"]').value
+            },
+            body: JSON.stringify({ input: texto, positivo: positivo })
+        })
+        .then(r => r.json())
+        .then(data => alert(data.mensagem));
+    }
+</script>
 }
+
