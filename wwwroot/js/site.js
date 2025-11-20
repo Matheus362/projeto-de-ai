@@ -26,7 +26,7 @@ public class LogService {
     }
 
     public static void main(String[] args) {
-        registrar("mateus", "LOGIN", "Usuário entrou no sistema", "192.168.0.10");
-        registrar("mateus", "ALTERACAO", "Alterou dados do cliente 12", "192.168.0.10");
+        registrar("matheus", "LOGIN", "Usuário entrou no sistema", "192.178.0.10");
+        registrar("matheus", "ALTERACAO", "Alterou dados do cliente 12", "192.178.0.10");
     }
 }
